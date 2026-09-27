@@ -1,75 +1,185 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog van Abed Rahman over software engineering en webontwikkeling">
-    <link href="assets/style.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="img/letter-a.png" rel="icon" type="image/png">
-    <title>Blog | Abed Rahman</title>
-</head>
-<body id="top">
-<header>
-    <nav class="topnav" id="myTopnav">
-        <div class="home"><a href="index.html" aria-label="Homepagina van Abed Rahman">Abed Rahman</a></div>
-        <div class="nav-links" id="main-navigation">
-            <a href="index.html">Home</a>
-            
-            <a href="projects.html">Projecten</a>
-            <a href="blog.html" aria-current="page">Blog</a>
-        </div>
-        <button class="icon" type="button" aria-label="Navigatiemenu openen" aria-expanded="false" aria-controls="main-navigation"><i class="fa fa-bars" aria-hidden="true"></i></button>
-    </nav>
-</header>
-
-<main>
-    <section class="box-container">
-        <div class="box box2 blog-hero">
-            <div class="intro-text">
-                <h1>Blog</h1>
-                <p class="text-cv">Hier schrijf ik kort over wat ik leer tijdens het bouwen van mijn portfolio en andere projecten binnen mijn opleiding.</p>
-            </div>
-        </div>
-        <div class="box box1 blog-hero-image">
-            <img class="box-image" src="img/deskcv.webp" alt="Werkplek met bureau en computer" loading="lazy">
-        </div>
-    </section>
-
-    <section class="box-container blog-row">
-        <h2 class="visually-hidden">Blogberichten</h2>
-        <article class="blog-box blog-box-green">
-            <time datetime="2026-09-07">7 september 2026</time>
-            <h2>Waarom ik semantische HTML gebruik</h2>
-            <p>Bij het opnieuw opbouwen van mijn portfolio heb ik geleerd waarom elementen zoals header, nav, main, section, article en footer beter zijn dan overal alleen div-elementen te gebruiken. De structuur van de pagina wordt daardoor duidelijker en de HTML is beter te begrijpen.</p>
-        </article>
-        <article class="blog-box blog-box-dark">
-            <time datetime="2026-09-10">10 september 2026</time>
-            <h2>Mijn portfolio responsive maken</h2>
-            <p>Ik heb mijn portfolio getest op mobiele, tablet- en desktopbreedtes. Met media queries laat ik de boxen onder elkaar komen op kleinere schermen en voorkom ik horizontaal scrollen. Hierdoor blijft de navigatie en inhoud bruikbaar op verschillende schermformaten.</p>
-        </article>
-    </section>
-</main>
-
-<button class="back-to-top" aria-label="Naar boven"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div class="footer-brand"><a class="footer-logo" href="index.html">Abed Rahman</a><p>HBO-ICT Software Engineering portfolio met mijn projecten en leerervaringen.</p></div>
-        <nav class="footer-nav" aria-label="Footernavigatie">
-            <h2>Pagina's</h2>
-            <ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projecten</a></li><li><a href="blog.html">Blog</a></li></ul>
-        </nav>
-        <div class="footer-social">
-            <h2>Social media</h2>
-            <div class="footer-social-links">
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i><span>GitHub</span></a>
-                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span></a>
-                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
-            </div>
-        </div>
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Blog van Abed Rahman over software engineering en webontwikkeling" name="description">
+  <link href="assets/style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="img/letter-a.png" rel="icon" type="image/png">
+  <title>
+   Blog | Abed Rahman
+  </title>
+ </head>
+ <body id="top">
+  <header>
+   <nav class="topnav" id="myTopnav">
+    <div class="home">
+     <a aria-label="Homepagina van Abed Rahman" href="index.html">
+      Abed Rahman
+     </a>
     </div>
-    <div class="footer-bottom"><p>© 2026 Abed Rahman. Alle rechten voorbehouden.</p><a href="#top">Naar boven ↑</a></div>
-</footer>
-<script src="assets/js/cv.js"></script>
-</body>
+    <div class="nav-links" id="main-navigation">
+     <a href="index.html">
+      Home
+     </a>
+     <a href="projects.html">
+      Projecten
+     </a>
+     <a aria-current="page" href="blog.html">
+      Blog
+     </a>
+    </div>
+    <div class="theme-control">
+     <button aria-controls="theme-menu" aria-expanded="false" aria-label="Thema kiezen" class="theme-toggle" id="theme-toggle" type="button">
+      <i aria-hidden="true" class="fa-solid fa-circle-half-stroke" id="theme-icon">
+      </i>
+     </button>
+     <div aria-label="Thema kiezen" class="theme-menu" id="theme-menu" role="group">
+      <p class="theme-menu-title">
+       Thema
+      </p>
+      <button aria-pressed="true" class="theme-option active" data-theme="automatic" type="button">
+       Automatisch
+      </button>
+      <p aria-live="polite" class="theme-sun-times" id="sun-status">
+       Zondata laden...
+      </p>
+      <button aria-pressed="false" class="theme-option" data-theme="light" type="button">
+       Licht
+      </button>
+      <button aria-pressed="false" class="theme-option" data-theme="dark" type="button">
+       Donker
+      </button>
+     </div>
+    </div>
+    <button aria-controls="main-navigation" aria-expanded="false" aria-label="Navigatiemenu openen" class="icon" type="button">
+     <i aria-hidden="true" class="fa fa-bars">
+     </i>
+    </button>
+   </nav>
+  </header>
+  <main>
+   <section class="box-container">
+    <div class="box box2 blog-hero">
+     <div class="intro-text">
+      <h1>
+       Blog
+      </h1>
+      <p class="text-cv">
+       Hier schrijf ik kort over wat ik leer tijdens het bouwen van mijn portfolio en andere projecten binnen mijn opleiding.
+      </p>
+     </div>
+    </div>
+    <div class="box box1 blog-hero-image">
+     <img alt="Werkplek met bureau en computer" class="box-image" loading="lazy" src="img/deskcv.webp">
+    </div>
+   </section>
+   <section class="box-container blog-row">
+    <h2 class="visually-hidden">
+     Blogberichten
+    </h2>
+    <article class="blog-box blog-box-green">
+     <time datetime="2026-09-07">
+      7 september 2026
+     </time>
+     <h2>
+      Waarom ik semantische HTML gebruik
+     </h2>
+     <p>
+      Bij het opnieuw opbouwen van mijn portfolio heb ik geleerd waarom elementen zoals header, nav, main, section, article en footer beter zijn dan overal alleen div-elementen te gebruiken. De structuur van de pagina wordt daardoor duidelijker en de HTML is beter te begrijpen.
+     </p>
+    </article>
+    <article class="blog-box blog-box-dark">
+     <time datetime="2026-09-10">
+      10 september 2026
+     </time>
+     <h2>
+      Mijn portfolio responsive maken
+     </h2>
+     <p>
+      Ik heb mijn portfolio getest op mobiele, tablet- en desktopbreedtes. Met media queries laat ik de boxen onder elkaar komen op kleinere schermen en voorkom ik horizontaal scrollen. Hierdoor blijft de navigatie en inhoud bruikbaar op verschillende schermformaten.
+     </p>
+    </article>
+   </section>
+  </main>
+  <button aria-label="Naar boven" class="back-to-top">
+   <i aria-hidden="true" class="fas fa-arrow-up">
+   </i>
+  </button>
+  <footer class="site-footer">
+   <div class="footer-inner">
+    <div class="footer-brand">
+     <a class="footer-logo" href="index.html">
+      Abed Rahman
+     </a>
+     <p>
+      HBO-ICT Software Engineering portfolio met mijn projecten en leerervaringen.
+     </p>
+    </div>
+    <nav aria-label="Footernavigatie" class="footer-nav">
+     <h2>
+      Pagina's
+     </h2>
+     <ul>
+      <li>
+       <a href="index.html">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="projects.html">
+        Projecten
+       </a>
+      </li>
+      <li>
+       <a href="blog.html">
+        Blog
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <div class="footer-social">
+     <h2>
+      Social media
+     </h2>
+     <div class="footer-social-links">
+      <a aria-label="GitHub" href="https://github.com/AbedRNDD" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-github">
+       </i>
+       <span>
+        GitHub
+       </span>
+      </a>
+      <a aria-label="LinkedIn" href="https://linkedin.com/" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-linkedin">
+       </i>
+       <span>
+        LinkedIn
+       </span>
+      </a>
+      <a aria-label="Instagram" href="https://instagram.com/" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-instagram">
+       </i>
+       <span>
+        Instagram
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    <p>
+     &copy; 2026 Abed Rahman. Alle rechten voorbehouden.
+    </p>
+    <a href="#top">
+     Naar boven &uarr;
+    </a>
+   </div>
+  </footer>
+  <script src="assets/js/cv.js">
+  </script>
+  <script src="assets/js/sun.js">
+  </script>
+ </body>
 </html>

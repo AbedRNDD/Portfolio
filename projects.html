@@ -1,98 +1,206 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Software- en webprojecten van HBO-ICT student Abed Rahman">
-    <link href="assets/style.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="img/letter-a.png" rel="icon" type="image/png">
-    <title>Projecten | Abed Rahman</title>
-</head>
-<body id="top">
-<header>
-    <nav class="topnav" id="myTopnav">
-        <div class="home"><a aria-label="Homepagina van Abed Rahman" class="active" href="index.html">Abed Rahman</a></div>
-        <div class="nav-links" id="main-navigation">
-            <a href="index.html">Home</a>
-            
-            <a aria-current="page" href="projects.html">Projecten</a>
-            <a href="blog.html">Blog</a>
-        </div>
-        <button aria-controls="main-navigation" aria-expanded="false" aria-label="Navigatiemenu openen" class="icon" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
-    </nav>
-</header>
-
-<main>
-    <section class="box-container">
-        <div class="box box1 project-hero">
-            <div class="project-hero-content">
-                <h1>Mijn projecten</h1>
-                <p>Een selectie van projecten uit mijn HBO-ICT-opleiding waarin ik verschillende programmeertechnieken en werkwijzen heb toegepast.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="box-container">
-        <h2 class="visually-hidden">Projectoverzicht</h2>
-        <div class="projects-grid">
-            <article class="project-card">
-                <img alt="Interface van de Hotel Simulator" src="img/hotel-simulator.png">
-                <div class="project-details">
-                    <h2>Hotel Simulator</h2>
-                    <p>Een Java-applicatie die de werking van een hotel simuleert. In het project werkte ik met gasten, kamers, medewerkers, events en softwarepatronen zoals MVC en Observer.</p>
-                    <p><strong>Technieken:</strong> Java, OOP, MVC, Observer, JSON</p>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <img alt="Interface van het Lingo-spel" src="img/lingo.png">
-                <div class="project-details">
-                    <h2>Lingo</h2>
-                    <p>Een webversie van het woordspel Lingo. De speler probeert het juiste woord te raden en krijgt na iedere poging visuele feedback over de letters.</p>
-                    <p><strong>Technieken:</strong> HTML, CSS, JavaScript</p>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <img alt="Speelveld van Vang de Volger" src="img/vang-de-volger.png">
-                <div class="project-details">
-                    <h2>Vang de Volger</h2>
-                    <p>Een Java-spel waarin de speler zich over een speelveld beweegt terwijl een volger de speler probeert te bereiken. Ik werkte hierbij aan spellogica, pathfinding en een grafische interface.</p>
-                    <p><strong>Technieken:</strong> Java, Swing, OOP, BFS, pathfinding</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="box-container project-cta-section">
-        <div class="project-cta">
-            <h2>Meer over mijn ontwikkeling</h2>
-            <p>In mijn blog schrijf ik kort over wat ik tijdens het bouwen van deze portfolio heb geleerd, zoals semantische HTML en responsive design.</p>
-            <a class="contact-button" href="blog.html">Bekijk blog</a>
-        </div>
-    </section>
-</main>
-
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div class="footer-brand"><a class="footer-logo" href="index.html">Abed Rahman</a><p>HBO-ICT Software Engineering portfolio met mijn projecten en leerervaringen.</p></div>
-        <nav class="footer-nav" aria-label="Footernavigatie">
-            <h2>Pagina's</h2>
-            <ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projecten</a></li><li><a href="blog.html">Blog</a></li></ul>
-        </nav>
-        <div class="footer-social">
-            <h2>Social media</h2>
-            <div class="footer-social-links">
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i><span>GitHub</span></a>
-                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span></a>
-                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
-            </div>
-        </div>
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Software- en webprojecten van HBO-ICT student Abed Rahman" name="description">
+  <link href="assets/style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="img/letter-a.png" rel="icon" type="image/png">
+  <title>
+   Projecten | Abed Rahman
+  </title>
+ </head>
+ <body id="top">
+  <header>
+   <nav class="topnav" id="myTopnav">
+    <div class="home">
+     <a aria-label="Homepagina van Abed Rahman" class="active" href="index.html">
+      Abed Rahman
+     </a>
     </div>
-    <div class="footer-bottom"><p>© 2026 Abed Rahman. Alle rechten voorbehouden.</p><a href="#top">Naar boven ↑</a></div>
-</footer>
-<button aria-label="Naar boven" class="back-to-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
-<script src="assets/js/cv.js"></script>
-</body>
+    <div class="nav-links" id="main-navigation">
+     <a href="index.html">
+      Home
+     </a>
+     <a aria-current="page" href="projects.html">
+      Projecten
+     </a>
+     <a href="blog.html">
+      Blog
+     </a>
+    </div>
+    <div class="theme-control">
+     <button aria-controls="theme-menu" aria-expanded="false" aria-label="Thema kiezen" class="theme-toggle" id="theme-toggle" type="button">
+      <i aria-hidden="true" class="fa-solid fa-circle-half-stroke" id="theme-icon">
+      </i>
+     </button>
+     <div aria-label="Thema kiezen" class="theme-menu" id="theme-menu" role="group">
+      <p class="theme-menu-title">
+       Thema
+      </p>
+      <button aria-pressed="true" class="theme-option active" data-theme="automatic" type="button">
+       Automatisch
+      </button>
+      <p aria-live="polite" class="theme-sun-times" id="sun-status">
+       Zondata laden...
+      </p>
+      <button aria-pressed="false" class="theme-option" data-theme="light" type="button">
+       Licht
+      </button>
+      <button aria-pressed="false" class="theme-option" data-theme="dark" type="button">
+       Donker
+      </button>
+     </div>
+    </div>
+    <button aria-controls="main-navigation" aria-expanded="false" aria-label="Navigatiemenu openen" class="icon" type="button">
+     <i aria-hidden="true" class="fa fa-bars">
+     </i>
+    </button>
+   </nav>
+  </header>
+  <main>
+   <section class="box-container">
+    <div class="box box1 project-hero">
+     <div class="project-hero-content">
+      <h1>
+       Mijn projecten
+      </h1>
+      <p>
+       Een selectie van projecten uit mijn HBO-ICT-opleiding waarin ik verschillende programmeertechnieken en werkwijzen heb toegepast.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="box-container project-list-section">
+    <h2 class="visually-hidden">
+     Projectoverzicht
+    </h2>
+    <div aria-label="Projecten filteren en sorteren" class="project-controls">
+     <div aria-label="Filter projecten" class="project-filters" role="group">
+      <button aria-pressed="true" class="filter-button active" data-filter="Alles" type="button">
+       Alles
+      </button>
+      <button aria-pressed="false" class="filter-button" data-filter="Java" type="button">
+       Java
+      </button>
+      <button aria-pressed="false" class="filter-button" data-filter="Web" type="button">
+       Web
+      </button>
+     </div>
+     <div class="project-sort-group">
+      <label for="project-sort">
+       Sorteren:
+      </label>
+      <select id="project-sort" name="project-sort">
+       <option value="default">
+        Standaard
+       </option>
+       <option value="az">
+        A&ndash;Z
+       </option>
+       <option value="za">
+        Z&ndash;A
+       </option>
+      </select>
+     </div>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+    </div>
+   </section>
+   <section class="box-container project-cta-section">
+    <div class="project-cta">
+     <h2>
+      Meer over mijn ontwikkeling
+     </h2>
+     <p>
+      In mijn blog schrijf ik kort over wat ik tijdens het bouwen van deze portfolio heb geleerd, zoals semantische HTML en responsive design.
+     </p>
+     <a class="contact-button" href="blog.html">
+      Bekijk blog
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer class="site-footer">
+   <div class="footer-inner">
+    <div class="footer-brand">
+     <a class="footer-logo" href="index.html">
+      Abed Rahman
+     </a>
+     <p>
+      HBO-ICT Software Engineering portfolio met mijn projecten en leerervaringen.
+     </p>
+    </div>
+    <nav aria-label="Footernavigatie" class="footer-nav">
+     <h2>
+      Pagina's
+     </h2>
+     <ul>
+      <li>
+       <a href="index.html">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="projects.html">
+        Projecten
+       </a>
+      </li>
+      <li>
+       <a href="blog.html">
+        Blog
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <div class="footer-social">
+     <h2>
+      Social media
+     </h2>
+     <div class="footer-social-links">
+      <a aria-label="GitHub" href="https://github.com/AbedRNDD" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-github">
+       </i>
+       <span>
+        GitHub
+       </span>
+      </a>
+      <a aria-label="LinkedIn" href="https://linkedin.com/" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-linkedin">
+       </i>
+       <span>
+        LinkedIn
+       </span>
+      </a>
+      <a aria-label="Instagram" href="https://instagram.com/" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-instagram">
+       </i>
+       <span>
+        Instagram
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    <p>
+     &copy; 2026 Abed Rahman. Alle rechten voorbehouden.
+    </p>
+    <a href="#top">
+     Naar boven &uarr;
+    </a>
+   </div>
+  </footer>
+  <button aria-label="Naar boven" class="back-to-top">
+   <i aria-hidden="true" class="fas fa-arrow-up">
+   </i>
+  </button>
+  <script src="assets/js/cv.js">
+  </script>
+  <script src="assets/js/sun.js">
+  </script>
+  <script src="assets/js/projects.js">
+  </script>
+ </body>
 </html>

@@ -150,6 +150,80 @@ li {
     font-size: 20px;
 }
 
+
+.theme-control {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin: 0 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    color: var(--black);
+    cursor: pointer;
+    font-size: 19px;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    background: #eee;
+    border-color: var(--black);
+}
+
+.theme-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 8px;
+    z-index: 1100;
+    display: none;
+    width: 230px;
+    padding: 14px;
+    background: var(--white);
+    border: 1px solid var(--black);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 18%);
+}
+
+.theme-menu.show {
+    display: grid;
+    gap: 8px;
+}
+
+.theme-menu-title {
+    font-weight: 700;
+}
+
+.theme-option {
+    width: 100%;
+    padding: 9px 10px;
+    background: var(--white);
+    border: 1px solid var(--black);
+    border-radius: 4px;
+    color: var(--black);
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+}
+
+.theme-option:hover,
+.theme-option:focus-visible,
+.theme-option.active {
+    background: var(--accent);
+}
+
+.theme-sun-times {
+    padding: 2px 2px 6px;
+    font-size: 0.82rem;
+    line-height: 1.35;
+}
+
 /* 3. Box-layout homepage */
 
 .box-container {
@@ -798,8 +872,20 @@ li {
 
     .icon {
         display: block;
-        margin-left: auto;
+        margin-left: 0;
         padding: 22px 24px;
+    }
+
+    .theme-control {
+        margin-left: auto;
+    }
+
+    .theme-toggle {
+        margin-inline: 2px;
+    }
+
+    .theme-menu {
+        right: 0;
     }
 
     .nav-links.responsive {
@@ -1059,5 +1145,482 @@ li {
     .footer-inner,
     .footer-bottom {
         width: calc(100% - 24px);
+    }
+}
+
+/* Opdracht 2 - project filters, formulier en API-thema */
+
+.project-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    padding: 28px 40px 0;
+}
+
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-button,
+#project-sort {
+    padding: 10px 16px;
+    background: var(--white);
+    border: 1px solid var(--black);
+    border-radius: 4px;
+    color: var(--black);
+    font: inherit;
+    cursor: pointer;
+}
+
+.filter-button:hover,
+.filter-button:focus-visible,
+.filter-button.active {
+    background: var(--accent);
+}
+
+.project-sort-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: default;
+}
+
+a.project-card {
+    cursor: pointer;
+}
+
+.project-card:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+.contact-form-section {
+    width: 100%;
+}
+
+.contact-form-box {
+    width: 100%;
+    min-height: 520px;
+    background: var(--white);
+}
+
+.contact-form-container {
+    width: min(100%, 560px);
+    padding: 30px;
+}
+
+.contact-form-container h2 {
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+#contact-form {
+    display: grid;
+    gap: 8px;
+}
+
+#contact-form label {
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--black);
+    border-radius: 4px;
+    background: var(--white);
+    color: var(--black);
+    font: inherit;
+}
+
+#contact-form textarea {
+    resize: vertical;
+}
+
+#contact-form [aria-invalid="true"] {
+    border: 2px solid #b00020;
+}
+
+.field-error {
+    min-height: 1.25em;
+    color: #b00020;
+    font-size: 0.9rem;
+}
+
+.form-status {
+    min-height: 1.5em;
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+body.dark-mode {
+    background: #171717;
+    color: #f3f3f3;
+}
+
+body.dark-mode .topnav,
+body.dark-mode .theme-menu,
+body.dark-mode .theme-option,
+body.dark-mode .contact-form-box,
+body.dark-mode .nav-links.responsive,
+body.dark-mode .box2,
+body.dark-mode .box11,
+body.dark-mode .box14,
+body.dark-mode .box15,
+body.dark-mode .box17,
+body.dark-mode .blog-box,
+body.dark-mode .filter-button,
+body.dark-mode #project-sort,
+body.dark-mode #contact-form input,
+body.dark-mode #contact-form textarea {
+    background: #222;
+    color: #f3f3f3;
+}
+
+body.dark-mode .home,
+body.dark-mode .box5,
+body.dark-mode .project-hero,
+body.dark-mode .blog-box-green,
+body.dark-mode .filter-button.active,
+body.dark-mode .filter-button:hover,
+body.dark-mode .filter-button:focus-visible,
+body.dark-mode .theme-option.active,
+body.dark-mode .theme-option:hover,
+body.dark-mode .theme-option:focus-visible {
+    color: var(--black);
+}
+
+body.dark-mode .box7 {
+    background: #34434a;
+}
+
+body.dark-mode .project-cta-section {
+    background: #202020;
+}
+
+body.dark-mode .project-card,
+body.dark-mode .theme-menu,
+body.dark-mode .theme-option,
+body.dark-mode .filter-button,
+body.dark-mode #project-sort,
+body.dark-mode #contact-form input,
+body.dark-mode #contact-form textarea {
+    border-color: #e5e5e5;
+}
+
+body.dark-mode .contact-box,
+body.dark-mode .education-item,
+body.dark-mode .nav-links a,
+body.dark-mode .home a,
+body.dark-mode .icon,
+body.dark-mode .theme-toggle {
+    color: #f3f3f3;
+}
+
+body.dark-mode .home,
+body.dark-mode .home a {
+    color: var(--black);
+}
+
+@media screen and (max-width: 768px) {
+    .project-controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 22px 22px 0;
+    }
+
+    .project-sort-group {
+        justify-content: space-between;
+    }
+
+    .contact-form-container {
+        padding: 0;
+    }
+}
+
+.project-list-section {
+    flex-direction: column;
+}
+
+a.project-card:focus-visible .project-details {
+    bottom: 0;
+}
+
+body.dark-mode .theme-option.active,
+body.dark-mode .theme-option:hover,
+body.dark-mode .theme-option:focus-visible {
+    background: var(--accent);
+    color: var(--black);
+}
+
+body.dark-mode .theme-toggle:hover,
+body.dark-mode .theme-toggle:focus-visible,
+body.dark-mode .nav-links a:hover {
+    background: #333;
+    border-color: #e5e5e5;
+    color: var(--white);
+}
+
+/* Feedbackverbeteringen - duidelijkere skills, compact formulier en rustiger dark mode */
+:root {
+    --dark-bg: #0f1513;
+    --dark-surface: #17201d;
+    --dark-surface-raised: #1f2a26;
+    --dark-border: #4a5d55;
+    --dark-text: #f2f7f5;
+    --dark-muted: #bdc9c4;
+}
+
+.skills-content {
+    gap: 24px;
+    width: min(calc(100% - 40px), 390px);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 82px;
+    padding: 14px;
+    border: 1px solid rgb(255 255 255 / 28%);
+    border-radius: 8px;
+    background: rgb(255 255 255 / 7%);
+}
+
+.skill-item i {
+    width: 24px;
+    flex: 0 0 24px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.skill-item div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.skill-item strong {
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+.skill-item span {
+    color: #d5ddd9;
+    font-size: 0.76rem;
+    line-height: 1.25;
+}
+
+.contact-form-box {
+    min-height: 0;
+    padding: 56px 24px;
+}
+
+.contact-form-container {
+    width: min(100%, 680px);
+    margin: 0 auto;
+    padding: 0;
+}
+
+.contact-form-container h2 {
+    margin-bottom: 24px;
+}
+
+#contact-form {
+    gap: 6px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    min-height: 48px;
+    padding: 12px 14px;
+    border-radius: 7px;
+}
+
+#contact-form textarea {
+    min-height: 150px;
+}
+
+#contact-form .submit-btn {
+    min-width: 170px;
+    margin-top: 10px;
+    justify-self: start;
+}
+
+body.dark-mode {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+body.dark-mode .topnav,
+body.dark-mode .theme-menu,
+body.dark-mode .theme-option,
+body.dark-mode .contact-form-box,
+body.dark-mode .nav-links.responsive,
+body.dark-mode .box2,
+body.dark-mode .box11,
+body.dark-mode .box14,
+body.dark-mode .box15,
+body.dark-mode .box17,
+body.dark-mode .blog-box,
+body.dark-mode .filter-button,
+body.dark-mode #project-sort {
+    background: var(--dark-surface);
+    color: var(--dark-text);
+}
+
+body.dark-mode #contact-form input,
+body.dark-mode #contact-form textarea {
+    background: #111815;
+    color: var(--dark-text);
+}
+
+body.dark-mode .box7 {
+    background: #25342f;
+}
+
+body.dark-mode .project-cta-section {
+    background: var(--dark-surface-raised);
+}
+
+body.dark-mode .project-card,
+body.dark-mode .theme-menu,
+body.dark-mode .theme-option,
+body.dark-mode .filter-button,
+body.dark-mode #project-sort,
+body.dark-mode #contact-form input,
+body.dark-mode #contact-form textarea {
+    border-color: var(--dark-border);
+}
+
+body.dark-mode .theme-sun-times,
+body.dark-mode .form-status {
+    color: var(--dark-muted);
+}
+
+body.dark-mode .theme-toggle:hover,
+body.dark-mode .theme-toggle:focus-visible,
+body.dark-mode .nav-links a:hover {
+    background: var(--dark-surface-raised);
+    border-color: var(--dark-border);
+    color: var(--dark-text);
+}
+
+@media screen and (max-width: 540px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-item {
+        min-height: 68px;
+    }
+
+    .contact-form-box {
+        padding: 36px 18px;
+    }
+
+    #contact-form .submit-btn {
+        width: 100%;
+        justify-self: stretch;
+    }
+}
+
+/* Contrast fixes for dark mode */
+body.dark-mode .blog-box-green {
+    background: var(--accent);
+    color: var(--black);
+}
+
+body.dark-mode #contact-form [aria-invalid="true"] {
+    border-color: #ff8fa3;
+}
+
+body.dark-mode .field-error {
+    color: #ff9bad;
+}
+
+#contact-form input:focus-visible,
+#contact-form textarea:focus-visible,
+#project-sort:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Skills responsiveness fix */
+.skills-content {
+    width: min(calc(100% - 28px), 320px);
+}
+
+.skills-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.skill-item {
+    width: 100%;
+    min-height: 70px;
+    padding: 10px 12px;
+}
+
+.skill-item strong,
+.skill-item span {
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+@media screen and (max-width: 1200px) {
+    .skills-content {
+        width: min(calc(100% - 20px), 300px);
+        gap: 18px;
+    }
+
+    .skill-item {
+        min-height: 64px;
+        padding: 8px 10px;
+    }
+
+    .skill-item i {
+        width: 20px;
+        flex-basis: 20px;
+        font-size: 19px;
+    }
+
+    .skill-item strong {
+        font-size: 0.88rem;
+    }
+
+    .skill-item span {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .skills-content {
+        width: min(100%, 420px);
+    }
+
+    .skill-item {
+        min-height: 68px;
     }
 }
