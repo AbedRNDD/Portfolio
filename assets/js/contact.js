@@ -15,12 +15,15 @@ function validateField(field) {
     }
 
     const isValid = input.checkValidity();
+    //aria-invalid voor schermlezers, zodat ze weten of het veld correct is ingevuld of niet
     input.setAttribute('aria-invalid', String(!isValid));
+    // ternary operator in plaats van if statement
     error.textContent = isValid ? '' : field.message;
 
     return isValid;
 }
 
+// zoals basis semester met boolean every() methode om te controleren of alle velden correct zijn ingevuld, en de validateField functie aan te roepen voor elk veld
 function validateForm() {
     return fields.map(validateField).every(Boolean);
 }
