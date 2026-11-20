@@ -2,7 +2,12 @@ using PortfolioApi.Dtos.Projects;
 
 namespace PortfolioApi.Services;
 
-// Contract only: implementations and dependency injection are the next step.
+// INTERFACE / CONTRACT
+// Deze interface beschrijft welke methodes ProjectService moet hebben.
+// Hier staat alleen WAT de service kan doen, niet HOE.
+// ProjectsController.cs gebruikt deze interface.
+// ProjectService.cs bevat de uitvoering van deze methodes.
+// In Program.cs wordt IProjectService gekoppeld aan ProjectService.
 public interface IProjectService
 {
     Task<List<ProjectDto>> GetAllAsync();

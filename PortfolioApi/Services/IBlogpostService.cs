@@ -2,7 +2,11 @@ using PortfolioApi.Dtos.Blogposts;
 
 namespace PortfolioApi.Services;
 
-// Contract only: implementations and dependency injection are the next step.
+// INTERFACE / CONTRACT VOOR BLOGPOSTS
+// Deze interface beschrijft de vijf methodes voor blogposts.
+// BlogpostsController.cs gebruikt IBlogpostService.
+// BlogpostService.cs voert de methodes uit.
+// De koppeling tussen interface en service staat in Program.cs.
 public interface IBlogpostService
 {
     Task<List<BlogpostDto>> GetAllAsync();
