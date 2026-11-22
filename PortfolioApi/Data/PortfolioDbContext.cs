@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PortfolioApi.Entities;
 
@@ -9,7 +10,7 @@ namespace PortfolioApi.Data;
 // De databaseverbinding staat in appsettings.Development.json.
 // ProjectService.cs en BlogpostService.cs ontvangen deze DbContext
 // via hun constructors door dependency injection.
-public class PortfolioDbContext : DbContext
+public class PortfolioDbContext : IdentityDbContext<ApplicationUser>
 {
 // De constructor ontvangt DbContextOptions vanuit dependency injection.
 // Program.cs configureert deze opties met UseSqlServer.
@@ -24,4 +25,10 @@ public class PortfolioDbContext : DbContext
 // ProjectService.cs / BlogpostService.cs gebruiken deze DbSet via _db.Projects / _db.Blogposts.
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<Blogpost> Blogposts => Set<Blogpost>();
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
 }

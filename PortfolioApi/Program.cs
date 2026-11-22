@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PortfolioApi.Data;
+using PortfolioApi.Entities;
 using PortfolioApi.Services;
 
 // Dit is het startpunt van mijn API.
@@ -36,6 +38,44 @@ builder.Services.AddDbContext<PortfolioDbContext>(options =>
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IBlogpostService, BlogpostService>();
 
+// Asp.Net core identity
+// hier voeg ik gebruikersbeheer toe
+// ApplicationUser staat in:
+// Entities/ApplicationUser.cs
+//IdentityRole is een bestaande class van Microsoft.AspNetCore.Identity
+//UserManager beheert gebruikers
+// SignInManager beheert inloggen
+// RoleManager beheert rollen
+// deze onderdelen kunnen via dependency injection worden gebruikt in controllers
+
+builder.Services
+// AddIdentity voegt de onderdelen van Identity toe
+    .AddIdentity<ApplicationUser, IdentityRole>(options =>
+    {
+        // eenzelfde emailadres mag maar 1 keer worden gebruikt
+        options.User.RequireUniqueEmail = true;    
+    })
+    // AddEntityFrameworkStores koppelt Identity aan de database via PortfolioDbContext
+    .AddEntityFrameworkStores<PortfolioDbContext>()
+    // AddDefaultTokenProviders voegt tokenproviders toe voor wachtwoordreset en emailbevestiging
+    .AddDefaultTokenProviders();
+
+// Autorisatie
+// dus authenticatie is wie is de gebruiker?
+// autorisatie wat mag deze gebruiker doen?
+// canmanagecontent geeft schrijfrechten aan gebruikers met de rol editor of admin
+// gebruiker met rol gast mag geen content schrijven en aanpassen
+// deze policy kan via dependency injection worden gebruikt in controllers
+
+// AddAuthorizationBuilder voegt autorisatie toe
+builder.Services.AddAuthorizationBuilder()
+//AddPolicy voegt een policy toe met de naam CanManageContent
+    .AddPolicy("CanManageContent", policy =>
+        policy.RequireRole("Editor", "Admin"));
+
+
+
+// applicatie bouwen en starten
 var app = builder.Build();
 
 // Swagger wordt alleen ingeschakeld in de Development omgeving
@@ -46,15 +86,53 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// For this course project we use EnsureCreated instead of migrations.
-// It creates the PortfolioDb database and tables the first time the API starts.
-// It does NOT delete or reset data on later restarts.
+//HTTPS, hier kan HTTP worden omgezet naar HTTPS
+app.UseHttpsRedirection();
+
+
+//Authentication
+// controleert wie de gebruiker is
+// bij cookie authentication wordt de gebruiker ingelogd en kan hij/zij content beheren
+// dit moet voor UseAuthorization worden aangeroepen
+app.UseAuthentication();
+
+//Authorization
+// controleert wat de gebruiker mag doen
+app.UseAuthorization();
+
+// Controllers Routes
+// hier worden de eindpunten van de controllers geregistreerd
+app.MapControllers();
+
+//Rollen aanmaken
+//ik maak hier de drie rollen beschikbaar: gast, editor en admin
+//RoleManager wordt via dependency injection gebruikt in deze code
+// dit gedeelte werkt pas wanneer de Identity databasetabellen via migrations heeft aangemaakt
+
+
+//
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<PortfolioDbContext>();
-    db.Database.EnsureCreated();
+    // RoleManager wordt via dependency injection gebruikt in deze code
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    string[] roles = ["Gast", "Editor", "Admin"];
+    // Voor elke rol in de array wordt gecontroleerd of deze al bestaat.
+    foreach (var role in roles)
+    {
+        // Als de rol nog niet bestaat, wordt deze aangemaakt.
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            // De rol wordt aangemaakt met RoleManager.CreateAsync.
+            var result = await roleManager.CreateAsync(new IdentityRole(role));
+            // Als het aanmaken van de rol niet lukt, wordt een uitzondering gegooid.
+            if (!result.Succeeded)
+            {
+                // Dit kan bijvoorbeeld gebeuren als er een probleem is met de database of de configuratie.
+                throw new InvalidOperationException($"could not create role '{role}'.");
+
+            }
+        }
+    }
 }
 
-app.UseHttpsRedirection();
-app.MapControllers();
 app.Run();
