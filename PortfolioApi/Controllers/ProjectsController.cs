@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortfolioApi.Dtos.Projects;
 using PortfolioApi.Services;
@@ -8,7 +9,7 @@ namespace PortfolioApi.Controllers;
 // Deze controller ontvangt HTTP requests voor projecten.
 // De controller voert zelf geen databasequeries uit.
 // Hiervoor gebruikt hij IProjectService uit de map Services.
-// De basis-URL komt uit Properties/launchSettings.json.
+// De basis URL komt uit Properties/launchSettings.json.
 // De route hieronder maakt daarvan /api/Projects.
 [ApiController]
 [Route("api/[controller]")]
@@ -32,6 +33,9 @@ public class ProjectsController : ControllerBase
 // De service haalt de gegevens op en zet de entities om naar DTO's.
 // Returntype: Task<ActionResult<List<ProjectDto>>>.
 // Bij succes geeft de controller 200 OK terug.
+
+// AllowAnonymous betekent dat deze methode toegankelijk is voor iedereen, ook voor niet-ingelogde gebruikers.
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<List<ProjectDto>>> GetAll()
     {
@@ -45,6 +49,7 @@ public class ProjectsController : ControllerBase
 // Returntype: Task<ActionResult<ProjectDto>>.
 // Geeft 200 OK met een ProjectDto terug als het project bestaat.
 // Geeft 404 Not Found terug als het ID niet bestaat.
+    [AllowAnonymous]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ProjectDto>> GetById(int id)
     {
@@ -64,7 +69,8 @@ public class ProjectsController : ControllerBase
 // Daarna wordt de entity via de DbContext opgeslagen in SQL Server.
 // Returntype: Task<ActionResult<ProjectDto>>.
 // CreatedAtAction geeft 201 Created terug met het nieuwe project
-// en een verwijzing naar het GetById-endpoint.
+// en een verwijzing naar het GetById endpoint.
+    [Authorize(policy: "CanManageContent")]
     [HttpPost]
     public async Task<ActionResult<ProjectDto>> Create(ProjectCreateDto input)
     {
@@ -79,6 +85,7 @@ public class ProjectsController : ControllerBase
 // Returntype: Task<IActionResult>.
 // Geeft 204 No Content terug bij succes.
 // Geeft 404 Not Found terug als het project niet bestaat.
+    [Authorize(policy: "CanManageContent")]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, ProjectUpdateDto input)
     {
@@ -97,6 +104,8 @@ public class ProjectsController : ControllerBase
 // Returntype: Task<IActionResult>.
 // Geeft 204 No Content terug als het verwijderen lukt.
 // Geeft 404 Not Found terug als het ID niet bestaat.
+    
+    [Authorize(policy: "CanManageContent")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {

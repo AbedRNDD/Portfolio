@@ -1,0 +1,15 @@
+# .NET build files
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Test results
+**/TestResults/
+
+# Temporary files
+*.tmp
+*.log

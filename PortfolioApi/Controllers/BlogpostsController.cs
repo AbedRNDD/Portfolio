@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortfolioApi.Dtos.Blogposts;
 using PortfolioApi.Services;
@@ -26,6 +27,7 @@ public class BlogpostsController : ControllerBase
 // GetAll:
 // GET /api/Blogposts haalt alle blogposts op.
 // Returntype: Task<ActionResult<List<BlogpostDto>>>.
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<List<BlogpostDto>>> GetAll()
     {
@@ -36,6 +38,8 @@ public class BlogpostsController : ControllerBase
 // GET /api/Blogposts/{id} haalt één blogpost op.
 // Returntype: Task<ActionResult<BlogpostDto>>>.
 // Geeft 200 OK of 404 Not Found terug.
+    
+    [AllowAnonymous]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<BlogpostDto>> GetById(int id)
     {
@@ -51,6 +55,7 @@ public class BlogpostsController : ControllerBase
 // POST /api/Blogposts ontvangt een BlogpostCreateDto.
 // Returntype: Task<ActionResult<BlogpostDto>>>.
 // Geeft 201 Created terug.
+    [Authorize(policy: "CanManageContent")]
     [HttpPost]
     public async Task<ActionResult<BlogpostDto>> Create(BlogpostCreateDto input)
     {
@@ -61,6 +66,7 @@ public class BlogpostsController : ControllerBase
 // PUT /api/Blogposts/{id} gebruikt een BlogpostUpdateDto.
 // Returntype: Task<IActionResult>.
 // Geeft 204 No Content of 404 Not Found terug.
+    [Authorize(policy: "CanManageContent")]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, BlogpostUpdateDto input)
     {
@@ -76,6 +82,8 @@ public class BlogpostsController : ControllerBase
 // DELETE /api/Blogposts/{id} verwijdert een blogpost.
 // Returntype: Task<IActionResult>.
 // Geeft 204 No Content of 404 Not Found terug.
+    
+    [Authorize(policy: "CanManageContent")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {

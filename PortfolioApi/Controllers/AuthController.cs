@@ -39,7 +39,7 @@ public class AuthController : ControllerBase
     // returntype: Task<ActionResult>
     // task betekent dat de methode asynchroon is en een resultaat teruggeeft
     // actionresult betekent dat de methode een http response teruggeeft
-    //iactionsresult betekent dat de methode een http response teruggeeft met een statuscode en eventueel een body
+    //iactionresult betekent dat de methode een http response teruggeeft met een statuscode en eventueel een body
 
     [HttpPost("register")]
     //AllowAnonymous betekent dat deze methode toegankelijk is voor iedereen, ook voor niet-ingelogde gebruikers
@@ -93,7 +93,7 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     [AllowAnonymous]
     // we gebruiken async omdat we database operaties uitvoeren die tijd kosten
-    //iactionsresult betekent dat de methode een http response teruggeeft met een statuscode en eventueel een body
+    //iactionresult betekent dat de methode een http response teruggeeft met een statuscode en eventueel een body
     public async Task<IActionResult> Login(LoginDto input)
     {
         // FindByEmailAsync zoekt de gebruiker op in de database op basis van het opgegeven emailadres
@@ -123,7 +123,7 @@ public class AuthController : ControllerBase
     //alleen ingelogde gebruikers kunnen uitloggen
     //SignInManager wordt gebruikt om de gebruiker uit te loggen en de cookie te verwijderen
     // returntype: Task<IActionResult>
-    //iactionsresult betekent dat de methode een http response teruggeeft met een statuscode en eventueel een body
+    //iactionresult betekent dat de methode een http response teruggeeft met een statuscode en eventueel een body
 
 //Authorize betekent dat deze methode alleen toegankelijk is voor ingelogde gebruikers
     [HttpPost("logout")]
@@ -161,7 +161,7 @@ public class AuthController : ControllerBase
         return Ok(new
         {
             email = user.Email,
-            role = roles
+            roles = roles
         });
     }
 }
